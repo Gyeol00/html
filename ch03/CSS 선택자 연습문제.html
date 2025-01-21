@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Selector Practice</title>
+</head>
+<style>
+    header h1 {
+        color: #4A90E2;
+    }
+
+    header {
+        background-color: #F5F5F5;
+    }
+
+    .highlight{
+        color: #F39C12;
+    }
+
+    nav a {
+        color: #E74C3C;
+    }
+
+    .intro{
+        background-color: #E8F4F8;
+    }
+
+    .title {
+        color: #27AE60;
+    }
+
+    .article:first-of-type {
+        background-color: #BDC3C7;
+    }
+
+    .article:nth-of-type(2) {
+        background-color: #FAD7A0;
+    }
+
+    .article p {
+        color: #9B59B6;
+    }
+
+    section {
+        border: 1px dashed #E74C3C;
+    }
+
+    footer a {
+        color: #34495E;
+    }
+
+    header li:first-child {
+        border: 1px solid #111;
+    }
+
+    header li:last-child {
+        border: 1px solid #111;
+    }
+
+    header > nav > ul > li {
+        background-color: #D5DBDB;
+    }
+
+    header li:first-child a {
+        color: #00f;
+    }
+
+    header > nav > ul > li:nth-of-type(2) a {
+        color: #0F0;
+    }
+
+    body > section {
+        border: 1px solid #BDC3C7;
+    }
+
+    .content h2 {
+        color: #1F618D;
+    }
+
+    header li {
+        list-style-type: square;
+    }
+
+    footer a:nth-of-type(1) {
+        color: #27AE60;
+    }
+
+    section:nth-of-type(1) {
+        border: 2px dashed #16A085;
+    }
+
+    section:last-of-type {
+        background-color: #bbe1ee;
+    }
+
+    p:nth-of-type(1) {
+        color: #D35400;
+    }
+
+    p:nth-last-of-type(1) {
+        font-style: italic;
+        color: #2980B9;
+    }
+    
+    .title + p {
+        background-color: E8F4F8;
+    }
+    
+    
+    .title ~ * {
+        color: #8E44AD;
+    }
+
+    h2:nth-of-type(1) {
+        color: #E67E22;
+    }
+
+    ol > li:nth-child(2n+1) {
+        color: orange;
+    }
+
+
+
+
+    .intro:hover {
+        background-color: #E74C3C;
+    }
+
+    footer > a:last-child::after {
+        content: 'c';
+    }
+
+
+
+</style>
+<body>
+    <header>
+        <h1>CSS Selector Practice</h1>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="intro">
+        <p>Hello, <span class="highlight">world</span>!</p>
+    </section>
+    <section class="content">
+        <div class="article">
+            <h2 class="title">Article 1</h2>
+            <p>Content of article</p>
+            <ol>
+                <li>item1</li>
+                <li>item2</li>
+                <li>item3</li>
+            </ol>
+        </div>
+        <div class="article">
+            <h2 class="title">Article 2</h2>
+            <p>Content of article 2</p>
+        </div>
+    </section>
+    <footer>
+        <p>Footer content here.</p>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Servixe</a>
+        <a href="#">Copyright;</a>
+    </footer>
+    
+</body>
+</html>

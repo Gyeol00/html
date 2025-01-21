@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>3.CSS구조선택자</title>
+    <!--
+        날짜 : 2025/01/21
+        이름 : 한결
+        내용 : CSS 구조선택자 실습하기
+    -->
+        <style>
+            /* 구조 선택자 */
+            #city > li:first-child {
+                color: red;
+            }
+
+            #city > li:nth-child(2) {
+                color: green;
+            }
+
+            #city > li:nth-child(4) {
+                color: blue;
+            }
+
+            #city > em:last-child {
+                color: orange;
+            }
+
+            #city > li:nth-of-type(1) {
+                background-color: yellow;
+            }
+            #city > em:nth-of-type(1) {
+                background-color: green;
+            }
+
+            ul:nth-child(3) > li:first-child { /* 몇 번째 자손인가 */
+                color: red;
+            }
+            ul:nth-of-type(2) > li:nth-child(2) { /* 몇 번째 타입인가 */
+                color: green;
+            }
+            ul:last-of-type > li:nth-child(4) { /* 마지막 타입 */
+                color: blue;
+            }
+
+        </style>
+</head>
+<body>
+    <h3>3.CSS 구조선택자</h3>
+
+    <ul id="city">
+        <li>서울</li>
+        <li>대전</li>
+        <li>대구</li>
+        <li>부산</li>
+        <li>광주</li>
+        <em>인천</em>
+        <em>울산</em>
+        <em>세종</em>
+    </ul>
+
+    <ul>
+        <li>한국</li>
+        <li>미국</li>
+        <li>일본</li>
+        <li>중국</li>
+        <li>호주</li>
+    </ul>
+
+
+
+
+</body>
+</html>
