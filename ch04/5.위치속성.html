@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>5.위치속성</title>
+    <!--
+        날짜 : 2025/01/21
+        이름 : 한결
+        내용 : CSS 위치속성 실습하기
+    -->
+
+    <style>
+        section {
+            width: 400px;
+            height: 300px;
+            border: 1px solid black;
+        }
+        section > div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            box-sizing: border-box;
+        }
+        section > div:nth-child(1) {background: red;}
+        section > div:nth-child(2) {background: green;}
+        section > div:nth-child(3) {background: blue;}
+
+        /*
+            position: static
+             - 모든 태그의 기본 포지션 값
+             - 이동속성(left, right, top, bottom) 적용 안됨
+             - 상대 좌표 포지션
+        */
+        .box1 > div:nth-child(1) {
+            position: static; /* 모든 태그의 기본 포지션 값 */
+            left: 100px;
+            top: 60px;
+        }
+
+        /*
+            position: relative
+             - 상대 좌표 포지션
+             - 이동속성(left, right, top, bottom) 적용 됨
+        */
+        .box2 > div:nth-child(1) {
+            position: relative;
+            left: 10px;
+            top: 10px;
+        }
+        .box2 > div:nth-child(2) {
+            position: relative;
+            right: 10px;
+            bottom: 10px;
+        }
+        .box2 > div:nth-child(3) {
+            position: relative;
+            left: 100px;
+            bottom: 30px;
+        }
+
+        /*
+            position: absolute
+        */
+        .box3 {
+            position: relative;
+        }
+        .box3 > div:nth-child(1) {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        .box3 > div:nth-child(2) {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+        }
+        .box3 > div:nth-child(3) {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+
+
+        /* position: fixed */
+    </style>
+</head>
+<body>
+    <h3>5.위치속성</h3>
+
+    <h4>position:static</h4>
+    <section class="box1">
+        <div></div>
+        <div></div>
+        <div></div>
+    </section>
+
+
+    <h4>position:relative</h4>
+    <section class="box2">
+        <div></div>
+        <div></div>
+        <div></div>
+    </section>
+
+
+    <h4>position:absolute</h4>
+    <section class="box3">
+        <div></div>
+        <div></div>
+        <div></div>
+    </section>
+
+
+    <h4>position:fixed</h4>
+    <section class="box4">
+        <div></div>
+        <div></div>
+        <div></div>
+    </section>
+
+</body>
+</html>
