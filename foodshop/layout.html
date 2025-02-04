@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>푸드샵</title>
+
+    <style>
+        /* 초기화 */
+        * {
+            margin: 0;
+            padding: 0;
+            font: normal 12px '고딕';
+        }
+
+        ul, ol {list-style: none;}
+        a {text-decoration: none; color: #111;}
+        input, textarea {outline: none;}
+
+        #wrapper {
+            width: 100%;
+            height: 100%;
+            border: 1px solid red;
+            box-sizing: border-box;
+        }
+
+        /* 헤더 */
+        header {
+            width: 100%;
+            height: auto;
+            border: 1px solid blue;
+            box-sizing: border-box;
+        }
+
+        header > div:nth-of-type(1) {
+            width: 100%;
+            height: 36px;
+            border: 1px solid #000000;
+            box-sizing: border-box;
+        }
+
+        header > div:nth-of-type(2) {
+            width: 100%;
+            height: 100px;
+            border: 1px solid green;
+            box-sizing: border-box;
+        }
+
+        header > div:nth-of-type(3) {
+            width: 100%;
+            height: 54px;
+            border: 1px solid green;
+            box-sizing: border-box;
+        }
+
+        header > div > div {
+            width: 1100px;
+            height: 34px;
+            margin: 0 auto;
+            border: 1px solid orange;
+            box-sizing: border-box;
+        }
+
+        header article {
+            width: 1100px;
+            height: 98px;
+            margin: 0 auto;
+            border: 1px solid orange;
+            box-sizing: border-box;
+        }
+
+        header nav {
+            width: 1100px;
+            height: 52px;
+            margin: 0 auto;
+            border: 1px solid orange;
+            box-sizing: border-box;
+        }
+
+        /* 메인 */
+        main {
+            width: 100%;
+            height: auto;
+            border: 1px solid blue;
+            box-sizing: border-box;
+        }
+
+        main .slider {
+            width: 100%;
+            height: auto;
+            border: 1px solid green;
+            box-sizing: border-box;
+        }
+
+        .slider article {
+            width: 1100px;
+            height: 350px;
+            margin: 0 auto;
+            border: 1px solid orange;
+            box-sizing: border-box;
+        }
+
+        main .go {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            height: auto;
+            border: 1px solid green;
+            box-sizing: border-box;
+        }
+
+        .go article {
+            width: 1100px;
+            height: 518px;
+            margin: 0 auto;
+            padding: 30px 10px;
+            border: 1px solid orange;
+            box-sizing: border-box;
+        }
+
+        .go div:nth-of-type(1) {
+            width: 412px;
+            height: 450px;
+            border: 1px solid gray;
+            box-sizing: border-box;
+        }
+
+        .go div:nth-of-type(2) {
+            width: 322px;
+            height: 220px;
+            border: 1px solid gray;
+            box-sizing: border-box;
+        }
+
+        .go div:nth-of-type(3) {
+            width: 322px;
+            height: 220px;
+            border: 1px solid gray;
+            box-sizing: border-box;
+        }
+
+        .go div:nth-of-type(4) {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            width: 322px;
+            height: 220px;
+            border: 1px solid gray;
+            box-sizing: border-box;
+        }
+
+        .go div:nth-of-type(5) {
+            width: 322px;
+            height: 220px;
+            border: 1px solid gray;
+            box-sizing: border-box;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <div>
+                <div></div>
+            </div>
+            <div>
+                <article></article>
+            </div>
+            <div>
+                <nav></nav>
+            </div>
+        </header>
+        <main>
+            <section class="slider">
+                <article></article>
+            </section>
+            <section class="go">
+                <article>
+                    <div>1</div>
+                    <div>2</div>
+                    <div>3</div>
+                    <div>4</div>
+                    <div>5</div>
+                </article>
+            </section>
+            <section class="oneday">
+                <article></article>
+            </section>
+            <section class="vegetable">
+                <article>
+                    <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </article>
+            </section>
+            <section class="premium">
+                <article></article>
+            </section>
+            <section class="seafood">
+                <article>
+                    <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                </article>
+            </section>
+        </main>
+        <footer>
+            <div>
+                <div></div>
+            </div>
+            <div>
+                <div></div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
