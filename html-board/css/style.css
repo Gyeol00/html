@@ -160,6 +160,29 @@ main .register {
     overflow: hidden;
 }
 
+main .register div {
+    width: 600px;
+    height: auto;
+    text-align: center;
+    padding-top: 20px;
+}
+
+main .register div > a:nth-of-type(1) {
+    font-size: 15px;
+    padding: 10px 25px;
+    background-color: #eeeeee;
+    border-radius: 10%;
+}
+
+main .register div > input {
+    font-size: 15px;
+    padding: 10px;
+    border: none;
+    background-color: rgb(48, 111, 153);
+    border-radius: 10%;
+    color: #fff;
+}
+
 main .register h2 {
     font-size: 15px;
     line-height: 30px;
@@ -169,13 +192,21 @@ main .register h2:nth-of-type(2) {
     margin-top: 30px;
 }
 
+main .register button {
+    border: none;
+    margin-left: 10px;
+}
+
 main .register table {
     border: 1px solid #d4d4d4;
     border-top: 3px solid #333;
+    border-collapse: collapse;
+    box-sizing: border-box;
 }
 
 main .register table td {
     border: 1px solid #d4d4d4;
+    padding: 5px;
 }
 
 
@@ -191,4 +222,5 @@ main .register table tr > td:nth-child(2){
 main .register table tr > td > input{
     width: 200px;
     height: 20px;
+    margin: 5px 0;
 }
