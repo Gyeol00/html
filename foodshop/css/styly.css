@@ -155,6 +155,38 @@ main > .go div:nth-child(3) {float:right; width: 322px; height: 220px;}
 main > .go div:nth-child(4) {width: 322px; height: 220px; margin-left: 11px; margin-top: 10px;}
 main > .go div:nth-child(5) {float:right; width: 322px; height: 220px; margin-top: 10px;}
 
+.banner1 {
+    width: 412px;
+    height: 450px;
+    background-image: url(/foodshop/images/main_go_bg1.png);
+}
+
+.banner a {
+    position: absolute;
+    left: 26px;
+    top: 36px;
+}
+
+.category {
+    color: #ff6312;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.title {
+    font-size: 24px;
+    color: #fcfffd;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: 30px;
+}
+
+.title i {
+    display: block;
+    margin-top: 24px;
+    font-size: 14px;
+}
+
 
 main > .oneday {}
 
