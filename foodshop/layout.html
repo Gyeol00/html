@@ -2,20 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>푸드샵</title>
-
+    <title>foodshop</title>
+    
     <style>
-        /* 초기화 */
         * {
             margin: 0;
             padding: 0;
-            font: normal 12px '고딕';
+            font: normal 12px '돋움';
         }
 
         ul, ol {list-style: none;}
         a {text-decoration: none; color: #111;}
-        input, textarea {outline: none;}
 
         #wrapper {
             width: 100%;
@@ -24,7 +21,6 @@
             box-sizing: border-box;
         }
 
-        /* 헤더 */
         header {
             width: 100%;
             height: auto;
@@ -32,65 +28,24 @@
             box-sizing: border-box;
         }
 
-        header > p > a {
-            float: right;
-        }
-
-        header > div:nth-of-type(1) {
+        header > div {
             width: 100%;
-            height: 36px;
-            border: 1px solid #000000;
-            box-sizing: border-box;
-        }
-
-        header > div:nth-of-type(2) {
-            width: 100%;
-            height: 100px;
             border: 1px solid green;
             box-sizing: border-box;
         }
 
-        header > div:nth-of-type(3) {
-            width: 100%;
-            height: 54px;
-            border: 1px solid green;
-            box-sizing: border-box;
-            background-color: #40382e;
-        }
+        header > div:nth-child(1) {height: 36px;}
+        header > div:nth-child(2) {height: 100px;}
+        header > div:nth-child(3) {height: 54px;}
 
-        header > div > div {
+        header > div > * {
             width: 1100px;
-            height: 34px;
-            margin: 0 auto;
+            height: 100%;
             border: 1px solid orange;
             box-sizing: border-box;
-        }
-
-        header article {
-            width: 1100px;
-            height: 98px;
             margin: 0 auto;
-            border: 1px solid orange;
-            box-sizing: border-box;
         }
 
-        header nav {
-            width: 1100px;
-            height: 52px;
-            margin: 0 auto;
-            border: 1px solid orange;
-            box-sizing: border-box;
-        }
-
-        header nav > ul {
-            display: flex;
-        }
-
-        header > nav > li {
-            font-size: 50px;
-        }
-
-        /* 메인 */
         main {
             width: 100%;
             height: auto;
@@ -98,263 +53,130 @@
             box-sizing: border-box;
         }
 
-        main .slider {
+        main > section {
             width: 100%;
             height: auto;
             border: 1px solid green;
             box-sizing: border-box;
         }
 
-        .slider article {
+        main > section:nth-child(1) {height: 352px;}
+        main > section:nth-child(2) {height: 520px;}
+        main > section:nth-child(3) {height: 190px;}
+        main > section:nth-child(4) {height: 660px;}
+        main > section:nth-child(5) {height: 200px;}
+        main > section:nth-child(6) {height: 660px;}
+
+        main > section > article {
             width: 1100px;
-            height: 350px;
-            margin: 0 auto;
+            height: 100%;
             border: 1px solid orange;
             box-sizing: border-box;
-        }
-
-        
-        main .go {
-            width: 100%;
-            height: auto;
-            border: 1px solid green;
-            box-sizing: border-box;
-        }
-
-        .go article {
-            display: flex;
-            flex-wrap: wrap; /* 내용이 넘칠 경우 다음 줄로 넘어감 */
-            width: 1100px;
-            height: 518px;
             margin: 0 auto;
+        }
+
+        main > .slider {}
+        
+        main > .go {}
+
+        main > .go > article {
             padding: 30px 10px;
-            border: 1px solid orange;
             box-sizing: border-box;
         }
-
-        .go div:nth-of-type(1) {
-            width: 412px;
-            height: 450px;
+        main > .go div {
+            float: left;
             border: 1px solid gray;
             box-sizing: border-box;
         }
 
-        .go .right {
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-start;
-            width: 644px;
-            height: 450px;
-            border: 1px solid gray;
-            box-sizing: border-box;  
-        }
+        main > .go div:nth-child(1) {width: 412px; height: 450px;}
+        main > .go div:nth-child(2) {width: 322px; height: 220px; margin-left: 11px;}
+        main > .go div:nth-child(3) {float:right; width: 322px; height: 220px;}
+        main > .go div:nth-child(4) {width: 322px; height: 220px; margin-left: 11px; margin-top: 10px;}
+        main > .go div:nth-child(5) {float:right; width: 322px; height: 220px; margin-top: 10px;}
 
-        .go .right div:nth-of-type(1) {
-            width: 322px;
-            height: 220px;
-            border: 1px solid gray;
-            box-sizing: border-box;
-        }
-        .go .right div:nth-of-type(2) {
-            width: 322px;
-            height: 220px;
-            border: 1px solid gray;
-            box-sizing: border-box;
-        }
-        .go .right div:nth-of-type(3) {
-            width: 322px;
-            height: 220px;
-            border: 1px solid gray;
-            box-sizing: border-box;
-        }
-        .go .right div:nth-of-type(4) {
-            width: 322px;
-            height: 220px;
-            border: 1px solid gray;
-            box-sizing: border-box;
-        }
 
-        .go .right > div {
+        main > .oneday {}
+
+        main > .vegetable {}
+        main > .vegetable > article {}
+        main > .vegetable ul {            
             width: 100%;
-            height: 220px;
-            border: 1px solid gray;
-            box-sizing: border-box;
-        }
-
-        .oneday {
-            width: 100%;
-            height: 190px;
-            border: 1px solid green;
-            box-sizing: border-box;
-        }
-
-        .oneday article {
-            width: 1100px;
-            height: 188px;
-            border: 1px solid orange;
-            box-sizing: border-box;
-            margin: 0 auto;
-        }
-        
-        .vegetable {
-            width: 100%;
-            height: auto;
-            border: 1px solid green;
-            box-sizing: border-box;
-        }
-
-        .vegetable > article {
-            width: 1100px;
-            height: 658px;
-            border: 1px solid orange;
-            box-sizing: border-box;
-            margin: 0 auto;
-        }
-
-        .vegetable > article > ul {
-            width: 1098px;
             height: 312px;
             border: 1px solid gray;
             box-sizing: border-box;
+            overflow: hidden;
         }
-
-        .vegetable > article > ul > li {
-            float: right;
-            width: 274px;
-            height: 310px;
+        main > .vegetable ul > li {
+            float: left;
+            width: 25%;
+            height: 100%;
             border: 1px solid pink;
             box-sizing: border-box;
-        }
+        }        
 
-        .premium {
+        main > .premium {}
+        main > .seafood {}
+        main > .seafood > article {}
+        main > .seafood ul {            
             width: 100%;
-            height: auto;
-            border: 1px solid green;
-            box-sizing: border-box;
-        }
-
-        .premium > article {
-            width: 1100px;
-            height: 198px;
-            border: 1px solid orange;
-            box-sizing: border-box;
-            margin: 0 auto;
-        }
-
-        .seafood {
-            width: 100%;
-            height: auto;
-            border: 1px solid green;
-            box-sizing: border-box;
-        }
-
-        .seafood > article {
-            width: 1100px;
-            height: 658px;
-            border: 1px solid orange;
-            box-sizing: border-box;
-            margin: 0 auto;
-        }
-
-        .seafood > article > ul {
-            width: 1098px;
             height: 312px;
             border: 1px solid gray;
             box-sizing: border-box;
+            overflow: hidden;
         }
-
-        .seafood > article > ul > li {
-            float: right;
-            width: 274px;
-            height: 310px;
+        main > .seafood ul > li {
+            float:left;
+            width: 25%;
+            height: 100%;
             border: 1px solid pink;
             box-sizing: border-box;
-        }
+        }        
 
         footer {
             width: 100%;
-            height: 208px;
-            border: 1px solid green;
+            height: auto;
+            border: 1px solid blue;
             box-sizing: border-box;
+        }
+
+        footer > div {
+            width: 100%;
+            border: 1px solid green;
+            box-sizing: border-box;            
         }
 
         footer > div:nth-child(1) {
-            width: 100%;
-            height: auto;
-            border: 1px solid green;
-            box-sizing: border-box;
-        }
-
-        footer > div:nth-child(1) > div {
-            width: 1100px;
-            height: 48px;
-            border: 1px solid orange;
-            box-sizing: border-box;
-            margin: 0 auto;
+            height: 50px;
         }
 
         footer > div:nth-child(2) {
-            width: 100%;
-            height: auto;
-            border: 1px solid green;
-            box-sizing: border-box;
+            height: 156px;            
         }
 
-        footer > div:nth-child(2) > div {
+        footer > div > div {
             width: 1100px;
-            height: 154px;
+            height: 100%;
             border: 1px solid orange;
             box-sizing: border-box;
             margin: 0 auto;
         }
 
 
-
-
     </style>
+    
 </head>
 <body>
     <div id="wrapper">
         <header>
             <div>
-                <div class="top">
-                    <p>
-                        <a href="#">로그인 |</a>
-                        <a href="#">마이페이지 |</a>
-                        <a href="#">관심상품(0) |</a>
-                        <a href="#">장바구니(0) |</a>
-                    </p>                      
-                </div>
+                <div></div>
             </div>
             <div>
-                <article>
-                    <a href="#">
-                    <img src="./images/ico_shopping.png" alt="주문조회 바로가기">
-                    <span>SHOPPING</span>
-                    <span>주문조회 바로가기</span>
-                    </a>
-                    <a href="#">
-                        <img src="./images/header_txt_logo.png" alt="식자재전문쇼핑몰">
-                    </a>
-                    <a href="#">
-                        <img src="./images/header_txt_onday.png" alt="원데이 번개장터">
-                    </a>
-                </article>
+                <article></article>
             </div>
             <div>
-                <nav>
-                    <ul>
-                        <li><a href="">채소/과일/곡류</a></li>
-                        <li><a href="">수산</a></li>
-                        <li><a href="">정육/달걀</a></li>
-                        <li><a href="">면/양념/소스</a></li>
-                        <li><a href="">음료/주류</a></li>
-                        <li><a href="">냉장/냉동식품</a></li>
-                        <li><a href="">캔/통조림</a></li>
-                        <li><a href="">가공/간편식품</a></li>
-                        <li><a href="">생활잡화</a></li>
-                    </ul>
-                </nav>
+                <nav></nav>
             </div>
         </header>
         <main>
@@ -364,12 +186,10 @@
             <section class="go">
                 <article>
                     <div>1</div>
-                <div class="right">
                     <div>2</div>
                     <div>3</div>
                     <div>4</div>
                     <div>5</div>
-                </div>
                 </article>
             </section>
             <section class="oneday">
@@ -407,6 +227,6 @@
                 <div></div>
             </div>
         </footer>
-    </div>
+    </div>    
 </body>
 </html>
