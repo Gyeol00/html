@@ -19,6 +19,8 @@ a {
     box-sizing: border-box;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 /* ---------------- header ---------------- */
 
 header {
@@ -127,4 +129,109 @@ footer > div > div > div > p:nth-child(2) {
 footer > div > div > div > p:nth-child(3) {
     float: right;
     color: #888888;
+}
+
+/* ---------------- main ---------------- */
+
+main {
+    width: 980px;
+    height: auto;
+    margin: 0 auto;
+    border: 1px solid orange;
+    box-sizing: border-box;
+}
+
+section div:nth-of-type(2) {
+    width: 357px;
+    height: 112px;
+    margin-top: 34px;
+    border: 1px solid #cfded8;
+    box-sizing: border-box;
+    background-color: #f5f6fa;
+}
+
+section div:nth-of-type(2) h3 {
+    width: 90.2px;
+    height: 14px;
+    margin-top: 22px;
+    margin-left: 20px;
+}
+
+section div:nth-of-type(2) p {
+    width: 231.2px;
+    height: 14px;
+    margin-top: 12px;
+    margin-left: 20px;
+}
+section div:nth-of-type(2) > div {
+    width: 173.01px;
+    height: 14px;
+    margin-top: 12px;
+    margin-left: 164.19px;
+}
+
+.login {
+    width: 359px;
+    height: 279px;
+    top: 242px;
+    left: 780px;
+    margin: 0 auto;
+    border: 1px solid #CFDED8;
+    box-sizing: border-box;
+}
+
+.login form {
+    position: relative;
+    width: 190px;
+    height: 56px;
+    margin-top: 60px;
+    margin-left: 42px;
+}
+
+.login table tr {
+    width: 190px;
+    height: 28px;
+}
+
+.login table tr:nth-of-type(2) {
+    margin-top: 28px;
+}
+
+.login table tr input {
+    width: 164px;
+    height: 24px;
+    margin-left: 5px;
+    padding-left: 5px;
+    border: 1px solid #e4eaec;
+    box-sizing: border-box;
+    background-color: #f7f7f7;
+}
+
+.login table tr input::placeholder {
+    width: 75.2px;
+    height: 14px;
+    margin-top: 1px;
+    font-family: 'Inter' sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14.52px;
+    letter-spacing: 0;
+}
+
+.login form img {
+    width: 20px;
+    height: 16.83px;
+    margin-top: 3.58px;
+} 
+
+.btnLogin {
+    position: absolute;
+    width: 60px;
+    height: 56px;
+    margin-top: -59px;
+    margin-left: 207px;
+    border: 1px solid #bebebe;
+    box-sizing: border-box;
+    background-color: #fdfdfd;
+    
 }
