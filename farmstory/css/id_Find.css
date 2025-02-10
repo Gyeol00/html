@@ -189,8 +189,9 @@ main .id_find > p {
 }
 
 main .id_find > div {
-    float: right;
-    margin-top: 45px;
+    display: flex;
+    margin-top: 50px;
+    margin-left: 499px;
 }
 
 main .id_find > div > a {
