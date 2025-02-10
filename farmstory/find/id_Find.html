@@ -74,19 +74,27 @@
             </div>
         </header>
         <main>
-            <section class="id_find">
-                <h2>아이디 찾기</h2>
+            <section class="id_find">             
                 <form action="#">
+                    <h2>아이디 찾기</h2>
                     <table>
                         <tbody>
                             <tr>
-                                <td><p>이름</p></td>
-                                <td class="container"><input type="text" name="name" placeholder="이름 입력"></td>
+                                <td>이름</td>
+                                <td><input type="text" name="name" placeholder="이름 입력"></td>
                             </tr>
                             <tr>
-                                <td><p>이메일</p></td>
-                                <td class="container"><input type="email" name="email" placeholder="이메일 입력"><button>인증번호 받기</button></td>
-                                <td class="container"><input type="text" name="auth_code" placeholder="인증번호 입력"><button>확인</button></td>
+                                <td>이메일</td>
+                                <td>
+                                    <div>
+                                        <input type="email" name="email" placeholder="이메일 입력"/>
+                                        <button>인증번호 받기</button>
+                                    </div>
+                                    <div>
+                                        <input type="text" name="auth_code" placeholder="인증번호 입력">
+                                        <button>확인</button>
+                                    </div>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -94,8 +102,10 @@
                 <p>회원가입시 이메일 주소와 입력한 이메일 주소가 같아야, 인증번호를 받을 수 있습니다.<br>
                     인증번호를 입력 후 확인 버튼을 누르세요.
                 </p>
-                <a href="#">취소</a>
-                <a href="#">다음</a>
+                <div>
+                    <a href="#">취소</a>
+                    <a href="#">다음</a>
+                </div>
             </section>
         </main>
         <footer>
