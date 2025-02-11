@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>user::login</title>
+    <title>user::terms</title>
     <link rel="stylesheet" href="../css/login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap" rel="stylesheet">
-
 </head>
 <body>
     <div id="wrapper">
@@ -76,36 +75,38 @@
         </header>
 
         <main id="user">
-            <section class="login">
-                <form action="#">
-                    <table>
-                        <tbody>
-                            <tr>
-                                <td><img src="../images/user/login_ico_id.png" alt="아이디"></td>
-                                <td><input type="text" name="uid" placeholder="아이디 입력"></td>
-                            </tr>
-                            <tr>
-                                <td><img src="../images/user/login_ico_pw.png" alt="비밀번호"></td>
-                                <td>
-                                    <input type="password" name="pass" placeholder="비밀번호 입력"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <input type="submit" style="border-color: #bbbbbb;" value="로그인" class="btnLogin">
-                </form>
-                <div class="social_login">
-                    <a href="#"><img src="../images/user/naver_login.PNG" alt="네이버 로그인"></a>
-                    <a href="#"><img src="../images/user/kakao_login.PNG" alt="카카오 로그인"></a>
-                    <a href="#"><img src="../images/user/google_login.PNG" alt="구글 로그인"></a>
-                </div>
+            <section>
+                <h2>사이트 이용약관</h2>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <textarea name="terms"></textarea>
+                                <label>
+                                    <input type="checkbox"/>
+                                    <p>동의합니다.</p>
+                                </label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2>개인정보 취급방침</h2>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <textarea name="personal_data"></textarea>
+                                <label>
+                                    <input type="checkbox">
+                                    <p>동의합니다.</p>
+                                </label>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
                 <div>
-                    <h3>회원 로그인 안내</h3>
-                    <p>아직 회원이 아니시면 회원으로 가입하세요.</p>
-                    <div style="text-align: right;">
-                        <a href="#">아이디 | </a>
-                        <a href="#">비밀번호찾기 | </a>
-                        <a href="#">회원가입</a>
-                    </div>
+                    <a href="#">취소</a>
+                    <a href="#">다음</a>
                 </div>
             </section>
         </main>
