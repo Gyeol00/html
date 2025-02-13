@@ -19,7 +19,8 @@ a {
     box-sizing: border-box;
 }
 
-/* -------- header -------- */
+
+/* ---------------- header ---------------- */
 
 header {
     width: 100%;
@@ -68,7 +69,6 @@ header article > .freeShipping {
 header > div:nth-child(3) {
     width: 100%;
     height: 50px;
-    margin-bottom: 10px;
 }
 
 header > div:nth-child(3) > ul {
@@ -76,8 +76,7 @@ header > div:nth-child(3) > ul {
 }
 
 header > div:nth-child(3) > ul > li {
-    width: 196px;
-    float: left;
+    float: right;
 }
 
 header > div:nth-child(3) > ul > li > a > img {
@@ -90,31 +89,26 @@ header > div:nth-child(3) > ul > li > a > img {
     top: -13px;
 }
 
-/* -------- main -------- */
+/* ---------------- main ---------------- */
 
 main {
     width: 100%;
     height: auto;
 }
 
-main .id_find {
+main section {
     width: 600px;
     height: auto;
     margin: 100px auto 160px auto;
 }
 
-main .id_find form {
+main section h2 {
     width: 100%;
     height: auto;
-}
-
-main .id_find form > h2 {
-    width: 63.2px;
-    height: 14px;
     margin-bottom: 10px;
 }
 
-main .id_find table {
+main section table {
     display: flex;
     width: 100%;
     height: auto;
@@ -123,69 +117,42 @@ main .id_find table {
     box-sizing: border-box;
 }
 
-main .id_find table div:nth-of-type(1) {
-    margin-bottom: 3px;
-}
-
-main .id_find td {
-    border: 1px solid #e9e9e9;
+main section table td {
+    padding-left: 12.5px;
+    border: 2px solid #e9e9e9;
     box-sizing: border-box;
 }
 
-main .id_find tr:nth-of-type(1) > td:nth-of-type(1) {
+main section table tr:nth-of-type(1) td:nth-of-type(1) {
+    height: 42.5px;
+}
+
+main section table td:nth-of-type(1) {
     width: 120px;
-    height: 49.5px;
-    padding-left: 12px;
+    height: 49px;
 }
 
-main .id_find tr:nth-of-type(1) > td:nth-of-type(2) {
+main section table tr:nth-of-type(1) td:nth-of-type(2) {
+    height: 42.5px;
+    font-weight: 700;
+}
+
+main section table td:nth-of-type(2) {
     width: 479px;
-    height: 49.5px;
-    padding-left: 12px;
+    height: 49px;
 }
 
-main .id_find tr:nth-of-type(1) input {
-    width: 164px;
-    height: 24px;
-    border: 1px solid #e4eaec;
-    box-sizing: border-box;
-    background-color: #f7f7f7;
-}
-
-main .id_find tr:nth-of-type(2) > td:nth-of-type(1) {
-    width: 120px;
-    height: 87px;
-    padding-left: 12px;
-}
-
-main .id_find tr:nth-of-type(2) > td:nth-of-type(2) {
-    width: 479px;
-    height: 87px;
-    padding-left: 12px;
-}
-
-main .id_find tr input {
+main section tr input {
     width: 164px;
     height: 24px;
     padding-left: 6px;
+    padding-bottom: 2px;
     border: 1px solid #e4eaec;
     box-sizing: border-box;
     background-color: #f7f7f7;
 }
 
-main .id_find tr:nth-of-type(2) button {
-    width: 85px;
-    height: 27px;
-    border: 1px solid #bebebe;
-    box-sizing: border-box;
-    background-color: #efefef;
-}
-
-main .id_find tr:nth-of-type(2) div:nth-of-type(2) button {
-    width: 34px;
-}
-
-main .id_find > p {
+main section p {
     width: 456.2px;
     height: 34px;
     margin-top: 14px;
@@ -193,21 +160,22 @@ main .id_find > p {
     color: #000000;
 }
 
-main .id_find > div {
+main section div {
     position: absolute;
     display: flex;
     margin-top: 50px;
     margin-left: 499px;
 }
 
-main .id_find > div > a {
+main section div a {
     padding: 10px 12px;
     margin-right: 2px;
     border: 1px solid #bebebe;
     box-sizing: border-box;
 }
+ 
 
-/* -------- footer -------- */
+/* ---------------- footer ---------------- */
 
 footer {
     width: 100%;

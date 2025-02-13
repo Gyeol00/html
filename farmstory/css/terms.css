@@ -149,6 +149,7 @@ main section table label input {
 }
 
 main div {
+    position: absolute;
     display: flex;
     margin-top: 13px;
     margin-left: 512px;

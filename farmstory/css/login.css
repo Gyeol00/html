@@ -124,6 +124,8 @@ main .login tr:nth-of-type(2) {
 main .login tr input {
     width: 164px;
     height: 24px;
+    padding-left: 6px;
+    padding-bottom: 1px;
     margin-left: 5px;
     border: 1px solid #e4eaec;
     box-sizing: border-box;
