@@ -1,3 +1,6 @@
+/* font-family : Inter*/
+      @import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
 * {
     margin: 0;
     padding: 0;
@@ -19,8 +22,7 @@ a {
     box-sizing: border-box;
 }
 
-
-/* ---------------- header ---------------- */
+/* -------- header -------- */
 
 header {
     width: 100%;
@@ -91,112 +93,124 @@ header > div:nth-child(3) > ul > li > a > img {
     top: -13px;
 }
 
-/* ---------------- main ---------------- */
+/* -------- main -------- */
 
 main {
     width: 100%;
     height: auto;
 }
 
-main .login {
-    width: 359px;
+main .id_find {
+    width: 600px;
     height: auto;
-    margin: 0px auto 160px auto;
-    border: 1px solid #cfded8;
+    margin: 100px auto 160px auto;
+}
+
+main .id_find form {
+    width: 100%;
+    height: auto;
+}
+
+main .id_find form > h2 {
+    width: 63.2px;
+    height: 14px;
+    margin-bottom: 10px;
+}
+
+main .id_find table {
+    display: flex;
+    width: 100%;
+    height: auto;
+    border-top: 2px solid #111111;
+    border-collapse: collapse;
     box-sizing: border-box;
 }
 
-main .login table {
-    position: absolute;
-    width: 190px;
-    height: 56px;
-    padding-top: 60px;
-    padding-left: 50px;
+main .id_find table div:nth-of-type(1) {
+    margin-bottom: 3px;
 }
 
-main .login tr {
-    width: 190px;
-    height: 28px;
+main .id_find td {
+    border: 1px solid #e9e9e9;
+    box-sizing: border-box;
 }
 
-main .login tr:nth-of-type(2) {
-    margin-top: 28px;
+main .id_find tr:nth-of-type(1) > td:nth-of-type(1) {
+    width: 120px;
+    height: 49.5px;
+    padding-left: 12px;
 }
 
-main .login tr input {
+main .id_find tr:nth-of-type(1) > td:nth-of-type(2) {
+    width: 479px;
+    height: 49.5px;
+    padding-left: 12px;
+}
+
+main .id_find tr:nth-of-type(1) input {
     width: 164px;
     height: 24px;
-    padding-left: 6px;
-    padding-bottom: 1px;
-    margin-left: 5px;
     border: 1px solid #e4eaec;
     box-sizing: border-box;
     background-color: #f7f7f7;
 }
 
-main .login tr > td > img {
-    width: 20px;
-    height: 16.83px;
+main .id_find tr:nth-of-type(2) > td:nth-of-type(1) {
+    width: 120px;
+    height: 87px;
+    padding-left: 12px;
 }
 
-main .login .btnLogin {
-    position: absolute;
-    width: 61px;
-    height: 53px;
-    margin-top: 65px;
-    margin-left: 248px;
+main .id_find tr:nth-of-type(2) > td:nth-of-type(2) {
+    width: 479px;
+    height: 87px;
+    padding-left: 12px;
+}
+
+main .id_find tr input {
+    width: 164px;
+    height: 24px;
+    padding-left: 6px;
+    border: 1px solid #e4eaec;
+    box-sizing: border-box;
+    background-color: #f7f7f7;
+}
+
+main .id_find tr:nth-of-type(2) button {
+    width: 85px;
+    height: 27px;
     border: 1px solid #bebebe;
     box-sizing: border-box;
-    background-color: #fdfdfd;
+    background-color: #efefef;
 }
 
-main .login div:nth-of-type(2) {
-    width: auto;
-    height: 112px;
-    border-collapse: collapse;
-    border-top: 1px solid #cfded8;
+main .id_find tr:nth-of-type(2) div:nth-of-type(2) button {
+    width: 34px;
+}
+
+main .id_find > p {
+    width: 456.2px;
+    height: 34px;
+    margin-top: 14px;
+    line-height: 22px;
+    color: #000000;
+}
+
+main .id_find > div {
+    position: absolute;
+    display: flex;
+    margin-top: 50px;
+    margin-left: 499px;
+}
+
+main .id_find > div > a {
+    padding: 10px 12px;
+    margin-right: 2px;
+    border: 1px solid #bebebe;
     box-sizing: border-box;
-    background-color: #f5f6fa;
 }
 
-main .login div:nth-of-type(2) h3 {
-    width: 90.2px;
-    height: 14px;
-    margin-top: 22px;
-    margin-left: 20px;
-}
-
-main .login div:nth-of-type(2) p {
-    width: 231.2px;
-    height: 14px;
-    margin-top: 10px;
-    margin-left: 20px;
-}
-
-main .login div:nth-of-type(2) > div {
-    width: 173.01px;
-    height: 14px;
-    margin-top: 10px;
-    margin-left: 164.19px;
-}
-
-main .social_login {
-    display: inline-flex;
-    width: 107px;
-    height: 36px;
-    margin-left: 73px;
-    margin-top: 128px;
-    margin-bottom: 15px;
-}
-
-main .social_login img {
-    margin-left: -4px;
-    width: 48px;
-    height: 45px;
-}
-
-
-/* ---------------- footer ---------------- */
+/* -------- footer -------- */
 
 footer {
     display: inline-block;

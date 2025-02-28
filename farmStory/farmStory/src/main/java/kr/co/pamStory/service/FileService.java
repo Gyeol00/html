@@ -25,8 +25,12 @@ public enum FileService {
 		dao.insertFile(dto);
 	}
 	
-	public FileDTO findFile(int fno) {
-		return dao.selectFile(fno);
+	//public FileDTO findFile(int fno) {
+		//return dao.selectFile(fno);
+	// }
+
+	public List<FileDTO> findFile(String no) {
+		return dao.selectFile(no);
 	}
 	
 	public List<FileDTO> findAllFile() {
@@ -40,6 +44,11 @@ public enum FileService {
 	public void deleteFile(int fno) {
 		dao.deleteFile(fno);
 	}
+	
+	public void deleteFile(String ano) {
+		dao.deleteFile(ano);
+	}
+	
 	
 	
 	// 파일 업로드

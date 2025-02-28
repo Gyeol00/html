@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,13 +79,20 @@
                             <tr>
                                 <th>제목</th>
                                 <td>
-                                    <input type="text" name="title" value="제목입니다." readonly>
+                                    <input type="text" name="title" value="${articleDTO.title}" readonly>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>작성자</th>
+                                <td>
+                                     <input type="text" name="writer" value="${articleDTO.writer}(${articleDTO.nick})" readonly/>
                                 </td>
                             </tr>
                             <tr>
                                 <th>파일</th>
                                 <td>
-                                    <a href="#">2020년 상반기 매출자료.xls</a>
+                                	
+                                    <a href="#" >1</a>
                                     &nbsp;
                                     <span>7</span>
                                     회 다운로드 <br>
@@ -97,13 +105,13 @@
                             <tr>
                                 <th>내용</th>
                                 <td>
-                                    <textarea name="content" readonly></textarea>
+                                    <textarea name="content" readonly >${articleDTO.content}</textarea>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                     <div style="text-align: right; margin-top: 10px; margin-bottom: 10px;">
-                    <a href="#" class="btn btnRemove">삭제</a>
+                    <a href="/farmStory/article/delete.do?no=${articleDTO.no}" class="btn btnRemove" >삭제</a>
                      <a href="#" class="btn btnModify">수정</a>
                      <a href="/farmStory/article/list.do" class="btn btnList">목록</a>
                     </div>
