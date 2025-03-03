@@ -31,10 +31,6 @@ public enum UserService {
 		return dao.selectUser(uid);
 	}
 	
-	public UserDTO findUser(String name, String email) {
-		return dao.findUserId(name, email);
-	}
-	
 	public UserDTO findUser(UserDTO dto) {
 		return dao.selectUser(dto);
 	}
