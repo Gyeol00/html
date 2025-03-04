@@ -8,12 +8,15 @@ import org.slf4j.LoggerFactory;
 
 import com.google.gson.JsonObject;
 
+import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
+import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import kr.co.pamStory.dto.UserDTO;
 import kr.co.pamStory.service.UserService;
 
 @WebServlet("/find/userId.do")
@@ -21,78 +24,51 @@ public class UserIdController extends HttpServlet {
 	private static final long serialVersionUID = -8567214395021632366L;
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
-	private UserService service = UserService.INSTANCE;
+	private UserService userservice = UserService.INSTANCE;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// 데이터 수신
-		String type = req.getParameter("type");
-		String value = req.getParameter("value");
-		
-		// 수신된 데이터 반드시! 출력해보기
-		// 시스템 출력은 메모리 자원이기에 배포할 땐 다 걷어야함.
-		// 그래서 log를 써야함, log 출력 안되면 classes 폴더의 logback 확인
-		System.out.println("type : " + type + ", value : " + value); // 시스템 콘솔 이용
-		logger.debug("type : " + type + ", value : " + value); // 로거 이용
-		
-		
-		// 카운트 조회하기
-		int count = service.countUser(type, value);
-		logger.debug("count : " + count);
-		
-		// 이메일 인증번호 발송
-		if(type.equals("email") && count == 0) {
-			// register.jsp 에서 value 값으로 설정했기 때문에 value임
-			String code = service.sendEmailCode(value);
-			
-			// 세션 저장
-			HttpSession session = req.getSession();
-			session.setAttribute("sessAuthCode", code);
-		
-		
-		}
-		
-		// JSON 생성, gson 라이브러리가 제공하는 것.
-		JsonObject json = new JsonObject();
-		json.addProperty("count", count);
-		logger.debug("json" + json);
-		
-		// JSON 출력
-		PrintWriter writer = resp.getWriter();
-		writer.println(json);
-		
+
+		RequestDispatcher dispatcher = req.getRequestDispatcher("/WEB-INF/view/find/userId.jsp");
+		dispatcher.forward(req, resp);
 		
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		// 전송 데이터 수신처리
-		String authCode = req.getParameter("authCode");
-		logger.debug("authCode : " + authCode);
-	
-		// 세션에 저장된 코드와 비교
-		HttpSession session = req.getSession();
-		String sessAuthCode = (String) session.getAttribute("sessAuthCode");
-		logger.debug("sessAuthCode : " + sessAuthCode);
+		String email = req.getParameter("email");  // 사용자가 입력한 이메일
+
+        // 서비스에서 이메일로 인증번호 발송
+        String authCode = userservice.sendEmailCode(email);
+
+        // 인증번호와 이메일 정보를 request에 저장
+        req.setAttribute("authCode", authCode);
+        req.setAttribute("email", email);
+
+        // 결과를 "/find/userId.do"로 포워딩
+        RequestDispatcher dispatcher = req.getRequestDispatcher("/find/userId.do");
+        dispatcher.forward(req, resp);
 		
-		if(authCode.equals(sessAuthCode)) {
-			// 인증 성공
-			JsonObject json = new JsonObject();
-			json.addProperty("result", 1);
-			resp.getWriter().println(json);
-			
-		}else {
-			// 인증 실패
-			JsonObject json = new JsonObject();
-			json.addProperty("result", 0);
-			resp.getWriter().println(json);
-		}
-		
-		
-		
+        
+        String inputCode = req.getParameter("authCode");  // 사용자가 입력한 인증번호
+        String correctCode = (String) req.getAttribute("authCode");  // 서버에서 발송한 인증번호
+
+        boolean isValid = inputCode.equals(correctCode);  // 인증번호 확인
+
+        // 결과에 따라 처리
+        if (isValid) {
+        	req.setAttribute("message", "인증번호가 확인되었습니다.");
+        } else {
+        	req.setAttribute("message", "유효하지 않은 인증번호입니다.");
+        }
+
+        // 인증결과를 verifyAuthCode.jsp로 전달
+        RequestDispatcher reqdispatcher = req.getRequestDispatcher("/find/userId.do");
+        reqdispatcher.forward(req, resp);
+        
+    }
 	
 	}
 	
-	
-}
+

@@ -1,5 +1,8 @@
 package kr.co.pamStory.dao;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -132,41 +135,113 @@ public class ArticleDAO extends DBHelper {
 
 	}
 	
+	public int selectCountArticleBySearch(ArticleDTO articleDTO) {
+		int count=0;
+		StringBuilder sql= new StringBuilder(SQL.SELECT_COUNT_ARTICLE_FOR_SEARCH);
 	
-
-	public void updateArticle(ArticleDTO dto) {
+		if(articleDTO.getSearchType().equals("title")) {
+			sql.append(SQL.WHERE_FOR_SEARCH_TITLE);
+		}else if(articleDTO.getSearchType().equals("content")) {
+			sql.append(SQL.WHERE_FOR_SEARCH_CONTENT);
+		}else if(articleDTO.getSearchType().equals("writer")) {
+			sql.append(SQL.JOIN_FOR_SEARCH_NICK);
+			sql.append(SQL.WHERE_FOR_SEARCH_WRITER);
+		}
 		try {
-			conn = getConnection();
-			psmt = conn.prepareStatement(SQL.UPDATE_BY_NO);
-			psmt.setInt(1, dto.getNo());
-			rs = psmt.executeQuery();
-
-			if (rs.next()) {
-				psmt = conn.prepareStatement(SQL.UPDATE_BY_NO);
-				psmt.setString(1, dto.getTitle());
-				psmt.setString(2, dto.getContent());
-				psmt.setString(3, dto.getWriter());
-				psmt.setString(4, dto.getRegip());
-				psmt.setInt(5, dto.getNo());
-
-				int result = psmt.executeUpdate(); // UPDATE 실행
-
-				if (result > 0) {
-					logger.info("게시글 수정 완료, no=" + dto.getNo());
-				} else {
-					logger.warn("게시글 수정 실패, no=" + dto.getNo());
-				}
-			} else {
-				logger.warn("해당 번호의 게시글이 존재하지 않습니다, no=" + dto.getNo());
-			}
-
+			conn=getConnection();
+			psmt=conn.prepareStatement(sql.toString());
+			psmt.setString(1, "%"+articleDTO.getKeyword()+"%");
+			logger.debug(psmt.toString());
 			
-			closeAll(); 
-
-		} catch (Exception e) {
+			rs=psmt.executeQuery();
+			
+			if(rs.next()) {
+				count=rs.getInt(1);
+			}
+			closeAll();
+		}catch(Exception e) {
 			logger.error(e.getMessage());
 		}
+		return count;
 	}
+	
+public List<ArticleDTO> selectAllArticleBySearch(ArticleDTO articleDTO, int start) {
+		
+		List<ArticleDTO> articles = new ArrayList<ArticleDTO>();
+		
+		StringBuilder sql = new StringBuilder(SQL.SELECT_ALL_ARTICLE_BY_SEARCH);
+		
+		if(articleDTO.getSearchType().equals("title")) {
+			sql.append(SQL.WHERE_FOR_SEARCH_TITLE);
+			sql.append(SQL.ORDER_FOR_SEARCH);
+			sql.append(SQL.LIMIT_FOR_SEARCH);			
+		}else if(articleDTO.getSearchType().equals("content")) {
+			sql.append(SQL.WHERE_FOR_SEARCH_CONTENT);
+			sql.append(SQL.ORDER_FOR_SEARCH);
+			sql.append(SQL.LIMIT_FOR_SEARCH);			
+		}else if(articleDTO.getSearchType().equals("writer")) {
+			sql.append(SQL.WHERE_FOR_SEARCH_WRITER);
+			sql.append(SQL.ORDER_FOR_SEARCH);
+			sql.append(SQL.LIMIT_FOR_SEARCH);			
+		}
+		
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(sql.toString());
+			psmt.setString(1, "%"+articleDTO.getKeyword()+"%");
+			psmt.setInt(2, start);
+			logger.debug(psmt.toString());
+			
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				ArticleDTO dto = new ArticleDTO();
+				dto.setNo(rs.getInt(1));
+				dto.setCate(rs.getString(2));
+				dto.setTitle(rs.getString(3));
+				dto.setContent(rs.getString(4));
+				dto.setComment(rs.getInt(5));
+				dto.setFile(rs.getInt(6));
+				dto.setHit(rs.getInt(7));
+				dto.setWriter(rs.getString(8));
+				dto.setRegip(rs.getString(9));
+				dto.setWdate(rs.getString(10));
+				dto.setNick(rs.getString(11));
+				articles.add(dto);
+			}
+			closeAll();
+		}catch (Exception e) {
+			logger.error(e.getMessage());
+		}			
+		return articles;		
+	}
+
+	public void updateArticle(ArticleDTO dto) {
+		
+	    try {
+	        conn = getConnection();
+	        psmt = conn.prepareStatement(SQL.UPDATE_BY_NO);
+	        psmt.setString(1, dto.getTitle());
+	        psmt.setString(2, dto.getContent());
+	        psmt.setString(3, dto.getWriter());
+	        psmt.setString(4, dto.getRegip());
+	        psmt.setInt(5, dto.getNo());
+
+	        int result = psmt.executeUpdate(); 
+
+	        if (result > 0) {
+	            logger.info("게시글 수정 완료, no=" + dto.getNo());
+	        } else {
+	            logger.warn("게시글 수정 실패, no=" + dto.getNo());
+	        }
+
+	        closeAll(); 
+
+	    } catch (Exception e) {
+	        logger.error(e.getMessage());
+	    }
+	}
+
 
 	public void deleteArticle(String no) {
 

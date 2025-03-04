@@ -7,126 +7,131 @@
     <link rel="stylesheet" href="../css/find/userId.css"/>
 </head>
 <script>
-	//유효성 검사에 사용할 정규표현식
-	const reUid   = /^[a-z]+[a-z0-9]{4,19}$/g;
-	const rePass  = /^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{5,16}$/;
-	const reName  = /^[가-힣]{2,10}$/ 
-	const reNick  = /^[a-zA-Zㄱ-힣0-9][a-zA-Zㄱ-힣0-9]*$/;
-	const reEmail = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
-	const reHp    = /^01(?:0|1|[6-9])-(?:\d{4})-\d{4}$/;
 	
 	document.addEventListener('DOMContentLoaded', function() {
-		
-		// 유효성 검사에 사용할 상태 변수
-		let isUidOk = false;
-		let isPassOk = false;
-		let isNameOk = false;
-		let isNickOk = false;
-		let isEmailOk = false;
-		let isHpOk = false;
-		
+
 		// 5. 이메일 유효성 검사 (중복/인증처리 포함)
 		const btnSendEmail = document.getElementById('btnSendEmail');
-		const emailResult = document.querySelector('.emailResult');
-		const auth = document.querySelector('.auth');
-		let preventDoubleClick = false;
+		const emailResult = document.querySelector('.emailResult'); 
+		const codeResult = document.querySelector('.codeResult'); 
+		// const emailResult = document.querySelector('.emailResult');
+		// const auth = document.querySelector('.auth');
+		// let preventDoubleClick = false;
+		const btnAuthCode = document.getElementById('btnAuthCode');
 		
-		btnSendEmail.onclick = async function(){
-			
+		let preventDoubleClick = false;
+		let nextBtnClick = false;
+		let code = "";
+		
+		btnSendEmail.onclick = async function(event){
 			const email = formRegister.email.value;
 			const name = formRegister.name.value;
 			
-			// 이중 클릭 방지
-			if(preventDoubleClick) {
-				// 처음 한번만 ok 다음으로 진행되지 않음
-				return;
-			}
-			
-			// 이메일은 입력 타입이 email로 지정되어 있기 때문에 정규표현식 굳이 사용하지 않아도 됨
-			if(!value.match(reEmail)) {
-				emailResult.innerText = '이메일이 유효하지 않습니다.';
-				emailResult.style.color = 'red';
-				isEmailOk = false;
+			if(preventDoubleClick){
 				return;
 			}
 			
 			preventDoubleClick = true;
-			const response = await fetch('/farmStory/find/userId.do?type=email&email=${email}&name=${name}');
+			// fetch 요청
+			// response 서버의 응답, 실제 데이터가 아니라 응답 객체
+			const response = await fetch('/farmStory/find/check/userid.do?name='+name+'&email='+email);
 			const data = await response.json();
+			code = data.code;
 			
-			if(data.count > 0){
-				emailResult.innerText = '이미 사용중인 이메일 입니다.';
-				emailResult.style.color = 'red';
-				isEmailOk = false;
-			}else {
-				// 인증번호 입력 필드 출력 (auth 클래스)
-				// div 기본 형식은 블럭이라 block
-				auth.style.display = 'block';
-			}
+			if(data.uid != "인증실패") {
+		        emailResult.innerText = ' 이메일로 인증번호를 발송했습니다.';
+		        emailResult.style.color = 'green';
+		        auth.style.display = 'block'; // 인증번호 입력란 보이기
+		        preventDoubleClick = false;
+			} else {		        
+		        emailResult.innerText = ' 이메일이 일치하지 않습니다.';
+		        emailResult.style.color = 'red';
+		    }
+			
 		}
 		
-			const btnAuthEmail = document.getElementById('btnAuthEmail');
-		
-			btnAuthEmail.onclick = async function(){
-			
-			const value = formRegister.auth.value;
-			// const jsonData = {"authCode":value};
-			
-			// 폼 데이터 생성
-			const formData = new URLSearchParams();
-			formData.append("authCode", value);
-			
-			// 서버 전송
-				// 인증번호는 기밀성이 필요함 파라미터로 보내기 X
-				// 아래 코드는 fetch 함수에서 post로 보내기
-				// 클라이언트에서 서버로 JSON 데이터 보내줌
-				// 체크컨트롤러 dopost 로 수신 처리
-			const response = await fetch('/farmStory/find/userId', {
-				method: 'POST',
-				headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-				body: formData
-			});
+		// 인증 성공 
+		btnAuthCode.onclick = async function(){
 
-			const data = await response.json();
-			console.log(data);
-			
-			if(data.result > 0){
-			emailResult.innerText = '이메일이 인증 되었습니다.';
-			emailResult.style.color = 'green';
-			isEmailOk = true;
+			event.preventDefault();
+			const authCode = formRegister.authCode.value;
+			if(code === authCode) {
+				codeResult.innerText = ' 인증에 성공하셨습니다.';
+				codeResult.style.color = 'green';
+				nextBtnClick = true;
 			}else{
-			emailResult.innerText = '유효한 인증코드가 아닙니다.';
-			emailResult.style.color = 'red';
-			isEmailOk = false;
-			}
+				codeResult.innerText = ' 인증에 실패하셨습니다.';
+				codeResult.style.color = 'red';
+			} 			
 		}
+		
+		
+		/*
+		const btnAuthEmail = document.getElementById('btnAuthEmail');
+		const authResult = document.querySelector('.authResult');
+
+		btnAuthEmail.onclick = async function(){
+		    const authCode = formFindId.auth.value;
+		    
+		    const formData = new URLSearchParams();
+		    formData.append("authCode", authCode);
+
+		    const response = await fetch('/yourApp/user/verifyAuthCode.do', {
+		        method: 'POST',
+		        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+		        body: formData
+		    });
+
+		    const data = await response.json();
+
+		    if(data.result > 0) {
+		        authResult.innerText = '인증번호가 확인되었습니다.';
+		        authResult.style.color = 'green';
+		        // 이제 아이디 찾기 요청을 서버에 보낼 수 있습니다.
+		    } else {
+		        authResult.innerText = '유효하지 않은 인증번호입니다.';
+		        authResult.style.color = 'red';
+		    }
+		}
+		*/
+		
+		
 		// 이메일 인증 처리 끝
 		// 5. 이메일 유효성 검사 (중복/인증처리 포함) 끝
 		
-		formRegister.onsubmit = function(e) {
+		//formRegister.onsubmit = function(e) {
 			
-			if(!isEmailOk) {
-				return false;
-			}
-		}
+		//	if(!isEmailOk) {
+		//		return false;
+		//	}
+		//}
 		
-		const next = document.getElementById('next');
-		const name = document.getElementsByName('name')[0];
-		const email = document.getElementsByName('email')[0];
-		const button = document.getElementsByTagName('button')[0];
+		//const next = document.getElementById('next');
+		//const name = document.getElementsByName('name')[0];
+		//const email = document.getElementsByName('email')[0];
+		//const button = document.getElementsByTagName('button')[0];
 		
-		next.onclick = function() {
-			if(name.value == "") {
-				alert('이름을 입력해 주세요.');
-				return false;			
-			}else if(email.value == "") {
-				alert('이메일을 입력해 주세요');
-				return false;
-			}else if(button.value == "") {
-				alert('인증번호를 입력해 주세요.');
-				return false;
+		
+		next.onclick = function(event) {
+			event.preventDefault();
+			if(nextBtnClick) {
+				
+				// 작성 이메일 
+				const email = formRegister.email.value;
+			    
+			    const formData = new URLSearchParams();
+			    formData.append("email", email);
+
+			    const response = fetch('/farmStory/find/resultUserId.do', {
+			        method: 'POST',
+			        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+			        body: formData
+			    });
+					
+			}else{
+				alert("인증하세요");
+				return;
 			}
-			return true;
 		}
 		
 		
@@ -199,7 +204,7 @@
         </header>
         <main>
             <section class="id_find">             
-                <form action="/farmStory/find/userId.do" method="POST">
+                <form action="#" name="formRegister" method="POST">
                     <h2>아이디 찾기</h2>
                     <table>
                         <tbody>
@@ -211,12 +216,12 @@
                                 <td>이메일</td>
                                 <td>
                                     <div>
-                                        <input type="email" name="email" placeholder="이메일 입력"/>
-                                        <button>인증번호 받기</button>
+                                        <input type="email" name="email" placeholder="이메일 입력" required/>
+                                        <button id="btnSendEmail">인증번호 받기</button><span class="emailResult"></span>
                                     </div>
                                     <div>
-                                        <input type="text" name="auth_code" placeholder="인증번호 입력">
-                                        <button>확인</button>
+                                        <input type="text" name="authCode" id="authCode" placeholder="인증번호 입력" required>
+                                        <button id="btnAuthCode">확인</button><span class="codeResult"></span>
                                     </div>
                                 </td>
                             </tr>

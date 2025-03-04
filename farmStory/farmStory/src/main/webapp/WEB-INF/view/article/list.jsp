@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/farmStory/css/farm/community.css"/>
 </head>
 
-
 <%@ include file="../layout/_header_bg.jsp" %>
         <main id="notice">
         <section class="left_section">
@@ -25,22 +24,22 @@
               <article>   
                   <ul>
                       <li>
-                        <a href="#">
+                        <a href="/farmStory/article/list.do">
                             <img src="/farmStory/images/sub_cate5_lnb1_ov.png" alt="공지사항">
                         </a>
                       </li>
                       <li>
-                        <a href="#">
+                        <a href="/farmStory/article/write.do">
                           <img src="/farmStory/images/sub_cate5_lnb2.png" alt="오늘의식단">
                         </a>
                       </li>
                       <li>
-                        <a href="#">
+                        <a href="/farmStory/article/view.do">
                           <img src="/farmStory/images/sub_cate5_lnb3.png" alt="나도요리사">
                         </a>
                       </li>
                       <li>
-                        <a href="#">
+                        <a href="/farmStory/article/modify.do">
                           <img src="/farmStory/images/sub_cate5_lnb4.png" alt="1:1고객문의">
                         </a>
                       </li>
@@ -71,9 +70,14 @@
                 <div>
                   <nav>
                     <h1>글목록</h1>
-                    <form action="#">
-                        <input type="text" name="search" placeholder="제목 키워드, 글쓴이 검색">
-                        <input type="submit" value="검색">
+                    <form action="/farmStory/article/search.do">
+                    	<select name="searchType" style="padding: 6px;">
+                    	<option value="title">제목</option>
+                    	<option value="content">내용</option>
+                    	<option value="writer">글쓴이</option>
+                    	</select>
+                        <input type="text" name="keyword" placeholder="제목 키워드, 글쓴이 검색" style="width: 200px;">
+                        <input type="submit" value="검색" style="padding: 6px;">
                     </form>
                   </nav>
                 </div>   
