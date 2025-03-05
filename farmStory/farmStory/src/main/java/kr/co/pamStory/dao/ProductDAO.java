@@ -1,11 +1,15 @@
 package kr.co.pamStory.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import kr.co.pamStory.dto.ProductDTO;
+import kr.co.pamStory.util.BASKET_SQL;
 import kr.co.pamStory.util.DBHelper;
-import kr.co.pamStory.util.PRODUCT_SQL;
+
 import kr.co.pamStory.util.SQL2;
 
 public class ProductDAO extends DBHelper {
@@ -56,7 +60,7 @@ public class ProductDAO extends DBHelper {
 		
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(PRODUCT_SQL.SELECT_PRODUCT_BY_PRODNO);
+			psmt = conn.prepareStatement(BASKET_SQL.SELECT_PRODUCT_BY_PRODNO);
 			psmt.setString(1, prodNo);
 			
 			rs = psmt.executeQuery();
@@ -82,6 +86,69 @@ public class ProductDAO extends DBHelper {
 		}
 		
 		return dto;
+	}
+
+	public List<ProductDTO> selectLatest3Products() {
+		
+		List<ProductDTO> dtos = new ArrayList<>();
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(SQL2.SELECT_PRODUCT_LIMIT_3);
+			
+			while(rs.next()) {
+				ProductDTO dto = new ProductDTO();
+				dto.setProdNo(rs.getInt(1));
+				dto.setCateNo(rs.getInt(2));
+				dto.setProdName(rs.getString(3));
+				dto.setProdPrice(rs.getInt(4));
+				dto.setProdPoint(rs.getInt(5));
+				dto.setProdStock(rs.getInt(6));
+				dto.setProdSold(rs.getInt(7));
+				dto.setProdDiscount(rs.getInt(8));
+				dto.setProdDeliveryFee(rs.getInt(9));
+				dto.setProdContent(rs.getString(10));
+				dto.setRegDate(rs.getString(11));
+				dto.setCateNo(rs.getInt(12));
+				dto.setCateName(rs.getString(13));
+				dtos.add(dto);
+			}
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		return dtos;
+	}
+
+	public List<ProductDTO> selectAllProducts() {
+		List<ProductDTO> dtos = new ArrayList<>();
+		
+		try {
+			conn = getConnection();
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery(SQL2.SELECT_PRODUCT_ALL);
+			
+			while (rs.next()) {
+				ProductDTO dto = new ProductDTO();
+				dto.setProdNo(rs.getInt(1));
+				dto.setCateNo(rs.getInt(2));
+				dto.setProdName(rs.getString(3));
+				dto.setProdPrice(rs.getInt(4));
+				dto.setProdPoint(rs.getInt(5));
+				dto.setProdStock(rs.getInt(6));
+				dto.setProdSold(rs.getInt(7));
+				dto.setProdDiscount(rs.getInt(8));
+				dto.setProdDeliveryFee(rs.getInt(9));
+				dto.setProdContent(rs.getString(10));
+				dto.setRegDate(rs.getString(11));
+				dto.setCateName(rs.getString(12));
+				
+				dtos.add(dto);
+				
+			}
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}return dtos;
 	}
 
 }
