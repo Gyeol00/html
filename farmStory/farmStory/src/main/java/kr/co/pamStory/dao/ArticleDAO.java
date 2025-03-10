@@ -2,6 +2,8 @@ package kr.co.pamStory.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +39,8 @@ public class ArticleDAO extends DBHelper {
 			psmt.setInt(3, dto.getFile());
 			psmt.setString(4, dto.getWriter());
 			psmt.setString(5, dto.getRegip());
+			psmt.setString(6, dto.getCate());
+			
 			psmt.executeUpdate();
 
 			// 글 번호 조회 쿼리 실행
@@ -189,7 +193,8 @@ public List<ArticleDTO> selectAllArticleBySearch(ArticleDTO articleDTO, int star
 			conn = getConnection();
 			psmt = conn.prepareStatement(sql.toString());
 			psmt.setString(1, "%"+articleDTO.getKeyword()+"%");
-			psmt.setInt(2, start);
+			psmt.setString(2, articleDTO.getCate());
+			psmt.setInt(3, start);
 			logger.debug(psmt.toString());
 			
 			rs = psmt.executeQuery();
@@ -256,6 +261,121 @@ public List<ArticleDTO> selectAllArticleBySearch(ArticleDTO articleDTO, int star
 		} catch (Exception e) {
 			logger.error(e.getMessage());
 		}
+
+	}
+
+	public int selectCountArticle(String uid) {
+		int postCount = 0;
+	    
+	    try {
+			conn = getConnection();
+	        psmt = conn.prepareStatement(SQL.SELECT_COUNT_USER_BY_UID);
+	        psmt.setString(1, uid);
+	        rs = psmt.executeQuery();
+
+	        if (rs.next()) {
+	            postCount = rs.getInt(1);  // 게시글 수를 가져옴
+	        }
+	        closeAll();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+
+	    return postCount;
+	}
+	
+	public int selectCountArticleByCate(String cate) {
+		int total = 0;
+
+		try {
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_COUNT_ARTICLE_BY_CATE);
+			psmt.setString(1, cate);
+			rs = psmt.executeQuery();
+			
+			if (rs.next()) {
+				total = rs.getInt(1);
+			}
+			closeAll();
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return total;
+	}
+
+	public List<ArticleDTO> selectAllArticleByCate(int start, String cate) {
+		List<ArticleDTO> articles = new ArrayList<ArticleDTO>();
+
+		try {
+
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_ALL_ARTICLE_BY_CATE);
+			psmt.setString(1, cate);
+			psmt.setInt(2, start);
+			
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				ArticleDTO dto = new ArticleDTO();
+				dto.setNo(rs.getInt(1));
+				dto.setCate(rs.getString(2));
+				dto.setTitle(rs.getString(3));
+				dto.setContent(rs.getString(4));
+				dto.setComment(rs.getInt(5));
+				dto.setFile(rs.getInt(6));
+				dto.setHit(rs.getInt(7));
+				dto.setWriter(rs.getString(8));
+				dto.setRegip(rs.getString(9));
+				dto.setWdate(rs.getString(10));
+				dto.setNick(rs.getString(11));
+				articles.add(dto);
+			}
+			closeAll();
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return articles;
+
+	}
+
+	public List<ArticleDTO> selectArticleByCateLimit5(String cate) {
+		List<ArticleDTO> articles = new ArrayList<ArticleDTO>();
+
+		try {
+
+			conn = getConnection();
+			psmt = conn.prepareStatement(SQL.SELECT_ALL_ARTICLE_BY_CATE_LIMIT_5);
+			psmt.setString(1, cate);
+			
+			rs = psmt.executeQuery();
+
+			while (rs.next()) {
+				ArticleDTO dto = new ArticleDTO();
+				dto.setNo(rs.getInt(1));
+				dto.setCate(rs.getString(2));
+				if(rs.getString(3).length() > 8) {
+					dto.setTitle(rs.getString(3).substring(0,8) + "...");					
+				}else {
+					dto.setTitle(rs.getString(3));
+				}
+			
+				dto.setContent(rs.getString(4));
+				dto.setComment(rs.getInt(5));
+				dto.setFile(rs.getInt(6));
+				dto.setHit(rs.getInt(7));
+				dto.setWriter(rs.getString(8));
+				dto.setRegip(rs.getString(9));
+				dto.setWdate(rs.getString(10).substring(0,11));
+				dto.setNick(rs.getString(11));
+				articles.add(dto);
+			}
+			closeAll();
+
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+		}
+		return articles;
 
 	}
 }

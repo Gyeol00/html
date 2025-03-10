@@ -41,20 +41,31 @@ public class LoginCheckFilter implements Filter {
 		HttpSession session = request.getSession();		
 		UserDTO userDTO = (UserDTO) session.getAttribute("sessUser");
 		
-		if(path.startsWith("/user") && !path.contains("logout.do")) {
+		if(path.startsWith("/user") && !path.contains("logout.do") && !path.contains("login.do")){
+			
+			if(path.contains("product")) {
+				return;
+			}
 			// 로그인하고 /user/* 요청일 때
 			if(userDTO != null) {
 				// 로그인을 안했을 경우 로그인 페이지로 이동
 				HttpServletResponse response = (HttpServletResponse) resp;
-				response.sendRedirect("/farmStory/article/list.do");
+				response.sendRedirect("/farmStory/index.do");
 				return;
 			}
-		}else if(path.startsWith("/article")){
+		}else if(path.startsWith("/article") || path.startsWith("/basket") || path.startsWith("/myinfo") ){
 			// 로그인을 하지 않고 /article/* 요청일 때
 			if(userDTO == null) {
 				// 로그인을 안했을 경우 로그인 페이지로 이동
 				HttpServletResponse response = (HttpServletResponse) resp;
 				response.sendRedirect("/farmStory/user/login.do?result=102");
+				return;
+			}
+		
+		}else if(path.startsWith("/admin")) {
+			if(!userDTO.getRole().equals("관리자")) {
+				HttpServletResponse response = (HttpServletResponse) resp;
+				response.sendRedirect("/farmStory/index.do?result=102");
 				return;
 			}
 		}

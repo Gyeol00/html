@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>아이디 찾기</title>
+    <link rel="stylesheet" href="/farmStory/css/layout_bg.css"/>
     <link rel="stylesheet" href="../css/find/userId.css"/>
 </head>
+<%@ include file="../layout/_header.jsp" %>
 <script>
 	
 	document.addEventListener('DOMContentLoaded', function() {
@@ -14,9 +16,6 @@
 		const btnSendEmail = document.getElementById('btnSendEmail');
 		const emailResult = document.querySelector('.emailResult'); 
 		const codeResult = document.querySelector('.codeResult'); 
-		// const emailResult = document.querySelector('.emailResult');
-		// const auth = document.querySelector('.auth');
-		// let preventDoubleClick = false;
 		const btnAuthCode = document.getElementById('btnAuthCode');
 		
 		let preventDoubleClick = false;
@@ -67,53 +66,6 @@
 			} 			
 		}
 		
-		
-		/*
-		const btnAuthEmail = document.getElementById('btnAuthEmail');
-		const authResult = document.querySelector('.authResult');
-
-		btnAuthEmail.onclick = async function(){
-		    const authCode = formFindId.auth.value;
-		    
-		    const formData = new URLSearchParams();
-		    formData.append("authCode", authCode);
-
-		    const response = await fetch('/yourApp/user/verifyAuthCode.do', {
-		        method: 'POST',
-		        headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-		        body: formData
-		    });
-
-		    const data = await response.json();
-
-		    if(data.result > 0) {
-		        authResult.innerText = '인증번호가 확인되었습니다.';
-		        authResult.style.color = 'green';
-		        // 이제 아이디 찾기 요청을 서버에 보낼 수 있습니다.
-		    } else {
-		        authResult.innerText = '유효하지 않은 인증번호입니다.';
-		        authResult.style.color = 'red';
-		    }
-		}
-		*/
-		
-		
-		// 이메일 인증 처리 끝
-		// 5. 이메일 유효성 검사 (중복/인증처리 포함) 끝
-		
-		//formRegister.onsubmit = function(e) {
-			
-		//	if(!isEmailOk) {
-		//		return false;
-		//	}
-		//}
-		
-		//const next = document.getElementById('next');
-		//const name = document.getElementsByName('name')[0];
-		//const email = document.getElementsByName('email')[0];
-		//const button = document.getElementsByTagName('button')[0];
-		
-		
 		next.onclick = function(event) {
 			event.preventDefault();
 			if(nextBtnClick == true) {
@@ -128,70 +80,6 @@
 	});
 	
 </script>
-<body>
-    <div id="wrapper">
-        <header>
-            <div>
-                <div class="top">
-                    <p>
-                        <a href="/farmStory">HOME |</a>
-			            <a href="/farmStory/user/login.do">로그인 |</a>
-			            <a href="/farmStory/user/terms.do">회원가입 |</a>
-			            <a href="#">나의정보 |</a>
-			            <a href="/farmStory/user/logout.do">로그아웃 |</a>
-			            <a href="/farmStory/admin/main.do">관리자 |</a>
-			            <a href="#">고객센터 </a>
-                    </p>
-                </div>
-            </div>
-            
-            <div>
-                <article>
-                    <a href="/farmStory" class="logo">
-                        <img src="/farmStory/images/logo.png" alt="팜스토리 로고">
-                    </a>
-                    <a href="#" class="freeShipping">
-                        <img src="/farmStory/images/head_txt_img.png" alt="팜스토리 헤더 텍스트">
-                    </a>
-                </article>
-            </div>
-
-            <div>
-                <ul>
-                    <li>
-                        <a href="/farmStory/intro.do">
-                            <img src="/farmStory/images/head_menu_line.png" alt="라인">
-                            <img src="/farmStory/images/head_menu1.png" alt="팜스토리소개">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/farmStory/basket/list.do">
-                            <img src="/farmStory/images/head_menu_badge.png" alt="30%" class="head_badge">
-                            <img src="/farmStory/images/head_menu_line.png" alt="라인">
-                            <img src="/farmStory/images/head_menu2.png" alt="장보기">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="/farmStory/images/head_menu_line.png" alt="라인">
-                            <img src="/farmStory/images/head_menu3.png" alt="농작물이야기">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/farmStory/event.do">
-                            <img src="/farmStory/images/head_menu_line.png" alt="라인">
-                            <img src="/farmStory/images/head_menu4.png" alt="이벤트">
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <img src="/farmStory/images/head_menu_line.png" alt="라인">
-                            <img src="/farmStory/images/head_menu5.png" alt="커뮤니티">
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </header>
         <main>
             <section class="id_find">             
                 <form action="#" name="formRegister" method="POST">
@@ -222,31 +110,10 @@
                     인증번호를 입력 후 확인 버튼을 누르세요.
                 </p>
                 <div>
-                    <a href="#">취소</a>
+                    <a href="/farmStory/user/login.do">취소</a>
                     <a href="/farmStory/find/resultUserId.do" id="next">다음</a>
                 </div>
             </section>
         </main>
         
-        <footer>
-            <div class="footer_container">
-                <div class="footer_img">
-                    <img src="/farmStory/images/footer_logo.png" alt="팜스토리 로고">
-                </div>
-                <div class="footer_p">
-                    <p>
-                        (주)팜스토리 / 사업자등록번호 123-45-67890 / 통신판매업신고 제 2013-부산진구-123호 / 벤처기업확인 서울지방중소기업청 제 012345678-9-01234호<br>
-                        등록번호 팜스토리01234 (2013.04.01) / 발행인 : 홍길동<br>
-                        대표 : 홍길동 / 이메일 : honggildong@gmail.com / 전화 : 01) 234-5678 / 부산광역시 부산진구 부전동 123
-                    </p>
-                    <p>
-                        copyrightⓒ 홍길동 All rights reserved.
-                    </p>
-                    <p>
-                        farmstory ver1.0.1
-                    </p>
-                </div>
-            </div>
-        </footer>
-</body>
-</html>
+<%@ include file="../layout/_footer.jsp" %>    

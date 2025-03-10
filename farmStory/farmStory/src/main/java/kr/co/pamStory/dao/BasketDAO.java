@@ -7,8 +7,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import kr.co.pamStory.dto.ProductDTO;
-import kr.co.pamStory.util.BASKET_SQL;
 import kr.co.pamStory.util.DBHelper;
+import kr.co.pamStory.util.SQL;
 
 public class BasketDAO extends DBHelper{
 	
@@ -30,7 +30,7 @@ public class BasketDAO extends DBHelper{
 		try {
 			conn = getConnection();
 			stmt = conn.createStatement();
-			rs = stmt.executeQuery(BASKET_SQL.SELECT_ALL_PRODUCT);
+			rs = stmt.executeQuery(SQL.SELECT_ALL_PRODUCT);
 			while(rs.next()) {
 				ProductDTO dto = new ProductDTO();
 				dto.setProdNo(rs.getInt(1));
@@ -43,8 +43,9 @@ public class BasketDAO extends DBHelper{
 				dto.setProdDiscount(rs.getInt(8));
 				dto.setProdDeliveryFee(rs.getInt(9));
 				dto.setProdContent(rs.getString(10));
-				dto.setImagesName(rs.getString(11));
-				dto.setCateName(rs.getString(12));
+				dto.setRegDate(rs.getString(11));
+				dto.setImagesName(rs.getString(12));
+				dto.setCateName(rs.getString(13));
 				
 				// 실제 할인된 판매 가격
 				dto.setProdDiscountPrice(rs.getInt(4) * (100 - rs.getInt(8)) / 100);
@@ -65,7 +66,7 @@ public class BasketDAO extends DBHelper{
 		
 		try {
 			conn = getConnection();
-			psmt = conn.prepareStatement(BASKET_SQL.SELECT_ALL_PRODUCT_BY_CATENO);
+			psmt = conn.prepareStatement(SQL.SELECT_ALL_PRODUCT_BY_CATENO);
 			psmt.setString(1, cateNo);
 			rs = psmt.executeQuery();
 			
@@ -81,8 +82,9 @@ public class BasketDAO extends DBHelper{
 				dto.setProdDiscount(rs.getInt(8));
 				dto.setProdDeliveryFee(rs.getInt(9));
 				dto.setProdContent(rs.getString(10));
-				dto.setImagesName(rs.getString(11));
-				dto.setCateName(rs.getString(12));
+				dto.setRegDate(rs.getString(11));
+				dto.setImagesName(rs.getString(12));
+				dto.setCateName(rs.getString(13));
 				
 				// 실제 할인된 판매 가격
 				dto.setProdDiscountPrice(rs.getInt(4) * (100 - rs.getInt(8)) / 100);

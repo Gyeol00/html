@@ -10,8 +10,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 @WebServlet("/intro.do")
-public class introController extends HttpServlet{
+public class IntroController extends HttpServlet {
 
+	
 	private static final long serialVersionUID = 134343434L;
 	
 	@Override
@@ -22,5 +23,4 @@ public class introController extends HttpServlet{
 	}
 	
 	
-
 }

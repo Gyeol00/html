@@ -4,9 +4,18 @@
     <meta charset="UTF-8">
     <title>팜스토리 로그인</title>
     <link rel="stylesheet" href="/farmStory/css/layout_bg.css"/>
+    <link rel="stylesheet" href="/farmStory/css/event/event.css"/>
 </head>
 
-<%@ include file="../layout/_header_bg.jsp" %>
+<script>
+	const result = ${result};
+
+	if(result == 102){
+		alert('관리자 권한이 없습니다.');
+	}
+</script>
+
+<%@ include file="./layout/_header_bg_intro.jsp" %>
 <main>
         <section class="left_section">
             <aside>

@@ -87,7 +87,6 @@ public class CommentDAO extends DBHelper {
 			rs=psmt.executeQuery();
 			
 			while(rs.next()) {
-				System.out.println("dto실행");
 				CommentDTO dto= new CommentDTO();
 				dto.setCno(rs.getInt(1));
 				dto.setParent(rs.getInt(2));
@@ -145,5 +144,22 @@ public class CommentDAO extends DBHelper {
 		}catch(Exception e) {
 			logger.error(e.getMessage());
 		}
+	}
+	
+	
+	public void updateCommnet(String cnoStr, String content) {
+		try {
+			conn=getConnection();
+			psmt=conn.prepareStatement(SQL.UPDATE_BY_CNO_BY_CNO_AND_CONTENT);
+			psmt.setString(1, content);		
+			psmt.setString(2, cnoStr);
+			psmt.executeUpdate();
+			
+			closeAll();
+			
+		}catch(Exception e) {
+			logger.error(e.getMessage());
+		}
+		
 	}
 }

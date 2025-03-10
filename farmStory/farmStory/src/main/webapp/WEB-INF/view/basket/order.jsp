@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function(){
 </script>
 
 
-<%@ include file="../layout/_header_bg.jsp" %>
+<%@ include file="./layout/_header_bg_market.jsp" %>
 <main>
         <section class="left_section">
             <aside>
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function(){
                           <th style="width: 76.19px;">할인</th>
                           <th style="width: 76.19px;">포인트</th>
                           <th style="width: 76.19px;">가격</th>
-                          <th style="width: 76.19px;">소개</th>
+                          <th style="width: 76.19px;">소계</th>
                         </thead>
                         <tbody>
                           
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function(){
 		                            <td class="table_gray_txt">${cart.cartProdCount}</td>
 		                            <td class="table_gray_txt">${cart.prodDiscount }%</td>
 		                            <td class="table_gray_txt">${cart.prodPoint}P</td>
-		                            <td class="table_gray_txt">${cart.prodPrice }</td>
+		                            <td class="table_gray_txt">${cart.prodPrice }원</td>
 		                            <td><span style="font-weight:bold;">${cart.prodDiscountPrice}</span><span class="table_gray_txt">원</span></td>
 		                        </tr>
                         	</c:forEach>
@@ -117,6 +117,11 @@ document.addEventListener('DOMContentLoaded', function(){
 	                <div class="total" style="margin-top: 15px;" >
                 <form action="/farmStory/basket/order.do" method="post">
                 	  <input type="hidden" id="userPoint" value="${userPoint}">
+                	  <input type="hidden" name="totalCnt" value="${totalCnt}">
+                	  <input type="hidden" name="userPoint" value="${userPoint}">
+                	  <input type="hidden" name="userPoint" value="${userPoint}">
+                	  <input type="hidden" name="userPoint" value="${userPoint}">
+                	  <input type="hidden" name="userPoint" value="${userPoint}">
 	                  <div>
 	                    <p style="margin-bottom: 10px;">주문번호 입력</p>
 	                    <div style="float: left;">
@@ -132,19 +137,19 @@ document.addEventListener('DOMContentLoaded', function(){
 	                          </tr>
 	                          <tr>
 	                            <td>포인트사용</td>
-	                            <td><input class="input_1" type="text" id="point1" placeholder="0">
+	                            <td><input class="input_1" type="text" id="point1" name="usePoint" placeholder="0">
 	                              <button type="button" id="pointbtn" class="btn_use">사용하기</button>
 	                              <p style="margin-top: 5px;" id="pointmsg">사용가능 ${userPoint}</p>
 	                            </td>
 	                          </tr>
 	                          <tr>
 	                            <td>받는분</td>
-	                            <td><input class="input_1" type="text" required></td>
+	                            <td><input class="input_1" type="text" name="receiver" required></td>
 	                          </tr>
 	                          <tr>
 	                            <td>연락처</td>
 	                            <td>
-	                              <input class="input_1" type="text" required>
+	                              <input class="input_1" type="text" name="receiverHp" required>
 	                            </td>
 	                          </tr>
 	                          <tr>
@@ -213,7 +218,7 @@ document.addEventListener('DOMContentLoaded', function(){
 	                      </tr>
 	
 	                    </table>
-	                      <button type="summit" style="margin-top: 10px;" class="total_red_btn">결제하기</button>
+	                      <button type="submit" style="margin-top: 10px;" class="total_red_btn">결제하기</button>
 	                  </div>
 				</form> 
 	                </div>

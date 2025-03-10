@@ -48,7 +48,7 @@
 			
 	});
 </script>
-<%@ include file="../layout/_header_bg.jsp" %>
+<%@ include file="./layout/_header_bg_market.jsp" %>
 <main>
         <section class="left_section">
             <aside>
@@ -111,7 +111,7 @@
                             </tr>
                             <tr>
                               <td>판매가격</td>
-                              <td id="price">${product.prodDiscountPrice}</td>
+                              <td id="price">${product.prodDiscountPrice}원</td>
                             </tr>
                             <tr>
                               <td>구매수량</td>
